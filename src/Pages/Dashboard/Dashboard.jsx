@@ -1,4 +1,3 @@
-
 import useAuth from "../../hooks/useAuth";
 import UserMenue from "../../Menue/UserMenue";
 import AgentMenue from "../../Menue/AgentMenue";
@@ -7,7 +6,7 @@ import AdminMenue from "../../Menue/AdminMenue";
 const Dashboard = () => {
   const { user } = useAuth();
   const role = user?.role;
-  // console.log(user, role);
+  console.log(user, role);
   return (
     <div className="max-w-7xl mx-auto ">
       <div className=" p-3 space-y-2 w-full lg:w-64 bg-blue-50 dark:text-gray-800 lg:h-[100vh] ">

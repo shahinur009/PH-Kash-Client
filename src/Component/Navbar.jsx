@@ -73,7 +73,7 @@ const Navbar = () => {
                     data-aos-delay="600"
                     data-aos-duration="2500"
                   >
-                    $ {userData?.balance}.00
+                    $ {userData?.balance}
                   </div>
                 )}
               </div>
