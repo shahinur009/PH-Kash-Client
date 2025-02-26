@@ -6,7 +6,7 @@ import AdminMenue from "../../Menue/AdminMenue";
 const Dashboard = () => {
   const { user } = useAuth();
   const role = user?.role;
-  console.log(user, role);
+  console.log("user", user);
   return (
     <div className="max-w-7xl mx-auto ">
       <div className=" p-3 space-y-2 w-full lg:w-64 bg-blue-50 dark:text-gray-800 lg:h-[100vh] ">
@@ -17,7 +17,7 @@ const Dashboard = () => {
             className="w-12 h-12 rounded-full dark:bg-gray-500"
           /> */}
           <div>
-            <h2 className="text-lg font-semibold">{user?.username}</h2>
+            <h2 className="text-lg font-semibold">{user?.email}</h2>
             <p>{user?.mobileNo}</p>
             <p className="  bg-green-300 space-x-1 rounded-2xl p-1 text-center font-bold ">
               {user?.role}
