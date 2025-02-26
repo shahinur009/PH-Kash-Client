@@ -1,14 +1,14 @@
-import React from 'react';
-import useAuth from '../../hooks/useAuth';
-import { Link } from 'react-router-dom';
-import UserMenue from '../../Menue/UserMenue';
-import AgentMenue from '../../Menue/AgentMenue';
-import AdminMenue from '../../Menue/AdminMenue';
+import React from "react";
+import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
+import UserMenue from "../../Menue/UserMenue";
+import AgentMenue from "../../Menue/AgentMenue";
+import AdminMenue from "../../Menue/AdminMenue";
 
 const Dashboard = () => {
   const { user } = useAuth();
   const role = user?.role;
-  console.log(user, role);
+  // console.log(user, role);
   return (
     <div className="max-w-7xl mx-auto ">
       <div className=" p-3 space-y-2 w-full lg:w-64 bg-blue-50 dark:text-gray-800 lg:h-[100vh] ">
@@ -27,9 +27,9 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {role === 'User' && <UserMenue></UserMenue>}
-        {role === 'Agent' && <AgentMenue />}
-        {role === 'Admin' && <AdminMenue />}
+        {role === "User" && <UserMenue></UserMenue>}
+        {role === "Agent" && <AgentMenue />}
+        {role === "Admin" && <AdminMenue />}
       </div>
     </div>
   );

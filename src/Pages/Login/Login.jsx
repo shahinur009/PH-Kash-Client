@@ -1,16 +1,16 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import { useState } from 'react';
-import useAuth from '../../hooks/useAuth';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const { login } = useAuth();
   const [email, setEmail] = useState();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state || '/';
+  const from = location?.state || "/";
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
@@ -18,19 +18,19 @@ const Login = () => {
     const password = form.password.value;
     try {
       const res = await login(email, password);
-      console.log(email, password);
+      console.log("login page", email, password);
       if (res.success) {
         toast.success(res.message);
         form.reset();
         setTimeout(() => {
-          navigate('/');
+          navigate("/");
         }, 1000);
       } else {
         toast.error(res.message);
       }
     } catch (err) {
       console.log(err);
-      toast.error('err.massage');
+      toast.error("err.massage");
     }
   };
 
@@ -93,7 +93,7 @@ const Login = () => {
         </form>
 
         <p className="px-6 text-sm text-center text-gray-400">
-          Don&apos;t have an account yet?{' '}
+          Don&apos;t have an account yet?{" "}
           <Link
             to="/signup"
             className="hover:underline hover:text-[#FEBF32] text-blue-600 font-bold"

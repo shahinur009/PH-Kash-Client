@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+
 
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../hooks/useAxiosSecure';
@@ -46,7 +47,7 @@ const AllRequestData = ({ refetch, asset }) => {
             refetch();
             Swal.fire({
               title: 'Deleted!',
-              text: 'Your file has been deleted.',
+              text: 'Your Request has been deleted.',
               icon: 'success',
             });
           }

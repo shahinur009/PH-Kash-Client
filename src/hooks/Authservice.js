@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = 'http://localhost:5000/api/auth/';
+const API_URL = "http://localhost:5000";
 
-const register = hrData => {
-  console.log('login');
+const register = (hrData) => {
+  // console.log("login");
   return axios.post(`${import.meta.env.VITE_API_URL}/register`, hrData);
 };
 
@@ -15,8 +15,8 @@ const login = (email, password) => {
 };
 
 const getCurrentUser = () => {
-  return axios.get(API_URL + 'me', {
-    headers: { 'x-auth-token': localStorage.getItem('authToken') },
+  return axios.get(API_URL + "me", {
+    headers: { "x-auth-token": localStorage.getItem("authToken") },
   });
 };
 

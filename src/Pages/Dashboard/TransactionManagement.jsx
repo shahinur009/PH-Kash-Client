@@ -1,9 +1,8 @@
-import React from 'react';
-import useAuth from '../../hooks/useAuth';
+import useAuth from "../../hooks/useAuth";
 
-import { useQuery } from '@tanstack/react-query';
-import AllRequestData from '../../Component/AllRequestData';
-import useAxiosCommon from '../../hooks/useAxiosCommon';
+import { useQuery } from "@tanstack/react-query";
+import AllRequestData from "../../Component/AllRequestData";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const TransactionManagement = () => {
   const axiosCommon = useAxiosCommon();
@@ -21,8 +20,9 @@ const TransactionManagement = () => {
       console.log(data);
       return data;
     },
-    queryKey: ['reqData', user],
+    queryKey: ["reqData", user],
   });
+  console.log("reqData:", reqData);
 
   return (
     <div>
@@ -81,7 +81,7 @@ const TransactionManagement = () => {
                 </tr>
               </thead>
               <tbody>
-                {reqData?.map(asset => (
+                {reqData?.map((asset) => (
                   <AllRequestData
                     key={asset?._id}
                     refetch={refetch}

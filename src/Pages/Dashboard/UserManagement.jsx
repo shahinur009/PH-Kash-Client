@@ -1,28 +1,31 @@
-import React, { useState } from 'react';
-import useAxiosCommon from '../../hooks/useAxiosCommon';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import useAuth from '../../hooks/useAuth';
-import { useQuery } from '@tanstack/react-query';
-import AllUserDetails from '../../Component/AllUserDetails';
+import { useState } from "react";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import AllUserDetails from "../../Component/AllUserDetails";
 
 const UserManagement = () => {
   const { user } = useAuth();
   const axiosCommon = useAxiosCommon();
   const axiosSecure = useAxiosSecure();
-  const [search, setSearch] = useState('');
-  const [searchText, setSearchText] = useState('');
+  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
 
-  const { data: allUsers = [], refetch } = useQuery({
+  const { data: allUsersData = [], refetch } = useQuery({
     queryFn: async () => {
-      const { data } = await axiosSecure(`/user-management?search=${search}`);
-      console.log(data);
-      return data;
+      const { data } = await axiosSecure(`/user-management1?search=${search}`);
+      console.log("Received data from backend:", data);
+      return data; // No need for .result
     },
-    queryKey: ['allUsers', user, search],
+    queryKey: ["allUsers", user, search],
   });
-  console.log(search);
 
-  const handleSearch = e => {
+  const allUsers = allUsersData || [];
+
+  console.log(allUsers);
+
+  const handleSearch = (e) => {
     e.preventDefault();
 
     setSearch(searchText);
@@ -30,8 +33,8 @@ const UserManagement = () => {
     // mutateAsync(search);
   };
   const handleReset = () => {
-    setSearch('');
-    setSearchText('');
+    setSearch("");
+    setSearchText("");
   };
   return (
     <div>
@@ -41,7 +44,7 @@ const UserManagement = () => {
             <input
               className="px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent border rounded-lg"
               type="text"
-              onChange={e => setSearchText(e.target.value)}
+              onChange={(e) => setSearchText(e.target.value)}
               value={searchText}
               name="search"
               placeholder="Enter user name"
@@ -115,9 +118,9 @@ const UserManagement = () => {
                 </tr>
               </thead>
               <tbody>
-                {allUsers.map(eUser => (
+                {allUsers?.map((eUser) => (
                   <AllUserDetails
-                    key={eUser._id}
+                    key={eUser?._id}
                     eUser={eUser}
                     refetch={refetch}
                   ></AllUserDetails>
