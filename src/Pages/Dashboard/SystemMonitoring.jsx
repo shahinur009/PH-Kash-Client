@@ -1,7 +1,7 @@
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import useAuth from '../../hooks/useAuth';
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const SystemMonitoring = () => {
   const axiosSecure = useAxiosSecure();
@@ -14,10 +14,10 @@ const SystemMonitoring = () => {
   } = useQuery({
     queryFn: async () => {
       const { data } = await axiosSecure(`/system-monitoring`);
-      console.log(data);
+      // console.log(data);
       return data;
     },
-    queryKey: ['reqData', user],
+    queryKey: ["reqData", user],
   });
   return (
     <div>
@@ -70,7 +70,7 @@ const SystemMonitoring = () => {
                 </tr>
               </thead>
               <tbody>
-                {reqData?.map(asset => (
+                {reqData?.map((asset) => (
                   <tr key={asset._id}>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <p className="text-gray-900 whitespace-no-wrap">

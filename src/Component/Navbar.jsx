@@ -1,14 +1,9 @@
-import React, { useState } from "react";
-// import logo from '';
+import { useState } from "react";
 import { GoArrowUpRight } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../hooks/useAxiosCommon";
-import UserMenue from "../Menue/UserMenue";
-import AgentMenue from "../Menue/AgentMenue";
-import AdminMenue from "../Menue/AdminMenue";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -16,23 +11,18 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [balanceOpen, setBalanceOpen] = useState(false);
-  const role = user?.role;
 
-  const {
-    data: userData = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: userData = [], refetch } = useQuery({
     queryFn: async () => {
       const { data } = await axiosCommon(`/user-balance/${user?.email}`);
-      console.log(data);
+      // console.log(data);
       return data;
     },
     queryKey: ["userData", user],
   });
   const handleLogout = () => {
     logout();
-    console.log("logout");
+    // console.log("logout");
     navigate("/login");
   };
   const handleBalance = () => {

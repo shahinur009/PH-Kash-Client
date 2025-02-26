@@ -1,20 +1,20 @@
-import React from 'react';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import toast from 'react-hot-toast';
-import Swal from 'sweetalert2';
-import useAuth from '../../hooks/useAuth';
+import React from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const Sendmoney = () => {
   const { user, login } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const mobileNo = form.MobileNo.value;
     const amount = form.amount.value;
     const password = form.password.value;
     if (amount < 50) {
-      return toast('Minimum transaction is 50 ');
+      return toast("Minimum transaction is 50 ");
     }
     let totalAmount = 0;
     if (amount >= 100) {
@@ -23,7 +23,7 @@ const Sendmoney = () => {
       totalAmount = parseInt(amount);
     }
     if (totalAmount > user.balance) {
-      return toast('You have not sufficient balance ');
+      return toast("You have not sufficient balance ");
     }
     const transactionData = {
       mobileNo,
@@ -31,14 +31,14 @@ const Sendmoney = () => {
       password,
       senderEmail: user.email,
     };
-    console.log(transactionData);
-    const assetRes = await axiosSecure.post('/send-Money', transactionData);
-    console.log(assetRes.data);
+    // console.log(transactionData);
+    const assetRes = await axiosSecure.post("/send-Money", transactionData);
+    // console.log(assetRes.data);
     if (assetRes.data.insertedId) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Your payment has been send',
+        position: "top-end",
+        icon: "success",
+        title: "Your payment has been send",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -51,7 +51,7 @@ const Sendmoney = () => {
       {/* <p className="text-3xl font-bold text-center pb-3">
         S-<span className="text-blue-600">Kash</span>
       </p> */}
-      <img className="w-28 h-14" src="PH-Cash.png" alt="" />
+      <img className="w-36 h-32" src="PH-Cash.png" alt="" />
       <h1 className="text-center text-2xl font-semibold mt-4">Send Money</h1>
       <p className="text-center pb-4">Only User to User</p>
       <form

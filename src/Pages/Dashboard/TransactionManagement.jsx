@@ -17,12 +17,12 @@ const TransactionManagement = () => {
       const { data } = await axiosCommon(
         `/transaction-management/${user?.email}`
       );
-      console.log(data);
+      // console.log(data);
       return data;
     },
     queryKey: ["reqData", user],
   });
-  console.log("reqData:", reqData);
+  // console.log("reqData:", reqData);
 
   return (
     <div>

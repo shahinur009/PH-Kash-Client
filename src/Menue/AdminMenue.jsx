@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BiSolidBadgeDollar } from 'react-icons/bi';
 import MenuItem from './MenuItem';
 import { FaUsersCog } from 'react-icons/fa';

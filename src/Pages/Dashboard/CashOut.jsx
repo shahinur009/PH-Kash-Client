@@ -1,12 +1,12 @@
-import React from 'react';
-import useAuth from '../../hooks/useAuth';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import Swal from 'sweetalert2';
+import React from "react";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const CashOut = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const mobileNo = form.MobileNo.value;
@@ -14,24 +14,24 @@ const CashOut = () => {
     const password = form.password.value;
     const percentage = (parseInt(amount) * 1.5) / 100;
     let totalAmount = parseInt(amount) + percentage;
-    console.log(totalAmount);
+    // console.log(totalAmount);
 
     const transactionData = {
       mobileNo,
       totalAmount,
       password,
       senderEmail: user.email,
-      type: 'Cash Out',
+      type: "Cash Out",
       percentage,
     };
-    console.log(transactionData);
-    const assetRes = await axiosSecure.post('/cash-out', transactionData);
-    console.log(assetRes.data);
+    // console.log(transactionData);
+    const assetRes = await axiosSecure.post("/cash-out", transactionData);
+    // console.log(assetRes.data);
     if (assetRes.data.insertedId) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Your cash-out req. has been send',
+        position: "top-end",
+        icon: "success",
+        title: "Your cash-out req. has been send",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -42,7 +42,7 @@ const CashOut = () => {
       {/* <p className="text-3xl font-bold text-center pb-3">
         S-<span className="text-blue-600">Kash</span>
       </p> */}
-      <img className="w-28 h-14" src="PH-Cash.png" alt="" />
+      <img className="w-36 h-32" src="PH-Cash.png" alt="" />
       <h1 className="text-center text-2xl font-semibold mt-4">Cash Out</h1>
       <p className="text-center pb-4">From Agent Only</p>
       <form

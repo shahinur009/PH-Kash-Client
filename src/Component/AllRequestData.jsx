@@ -1,28 +1,27 @@
 /* eslint-disable react/prop-types */
 
-
-import Swal from 'sweetalert2';
-import useAxiosSecure from '../hooks/useAxiosSecure';
+import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AllRequestData = ({ refetch, asset }) => {
   const axiosSecure = useAxiosSecure();
 
   //approve request=====================
 
-  const handleApprove = id => {
-    console.log(id);
-    axiosSecure.patch(`/approve-request/${id}`).then(res => {
-      console.log(res.data);
+  const handleApprove = (id) => {
+    // console.log(id);
+    axiosSecure.patch(`/approve-request/${id}`).then((res) => {
+      // console.log(res.data);
       if (res.data.insertedId > 0) {
         refetch();
         Swal.fire({
-          title: 'Approved',
-          text: 'Your transaction has been approved',
-          icon: 'success',
+          title: "Approved",
+          text: "Your transaction has been approved",
+          icon: "success",
         });
       }
     });
-    axiosSecure.delete(`/reject-request/${id}`).then(res => {
+    axiosSecure.delete(`/reject-request/${id}`).then((res) => {
       if (res.data.deletedCount > 0) {
         refetch();
       }
@@ -31,24 +30,24 @@ const AllRequestData = ({ refetch, asset }) => {
 
   //reject request========================xxxxxxxxxxxxxxxxx
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, reject it!',
-    }).then(result => {
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, reject it!",
+    }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/reject-request/${id}`).then(res => {
+        axiosSecure.delete(`/reject-request/${id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({
-              title: 'Deleted!',
-              text: 'Your Request has been deleted.',
-              icon: 'success',
+              title: "Deleted!",
+              text: "Your Request has been deleted.",
+              icon: "success",
             });
           }
         });

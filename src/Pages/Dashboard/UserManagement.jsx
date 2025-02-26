@@ -15,7 +15,7 @@ const UserManagement = () => {
   const { data: allUsersData = [], refetch } = useQuery({
     queryFn: async () => {
       const { data } = await axiosSecure(`/user-management1?search=${search}`);
-      console.log("Received data from backend:", data);
+      // console.log("Received data from backend:", data);
       return data; // No need for .result
     },
     queryKey: ["allUsers", user, search],
@@ -23,7 +23,7 @@ const UserManagement = () => {
 
   const allUsers = allUsersData || [];
 
-  console.log(allUsers);
+  // console.log(allUsers);
 
   const handleSearch = (e) => {
     e.preventDefault();

@@ -1,23 +1,23 @@
-import React from 'react';
-import useAuth from '../../hooks/useAuth';
-import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import toast from 'react-hot-toast';
+import React from "react";
+import useAuth from "../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const TransactionHistory = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  if (user.status !== 'Active') {
-    return toast.error('Your Account is not Active Yet');
+  if (user.status !== "Active") {
+    return toast.error("Your Account is not Active Yet");
   }
 
   const { data: reqData = [], refetch } = useQuery({
     queryFn: async () => {
       const { data } = await axiosSecure(`/transaction-history/${user?.email}`);
-      console.log(data);
+      // console.log(data);
       return data;
     },
-    queryKey: ['reqData', user],
+    queryKey: ["reqData", user],
   });
   return (
     <div>
@@ -70,7 +70,7 @@ const TransactionHistory = () => {
                 </tr>
               </thead>
               <tbody>
-                {reqData?.map(asset => (
+                {reqData?.map((asset) => (
                   <tr key={asset._id}>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <p className="text-gray-900 whitespace-no-wrap">

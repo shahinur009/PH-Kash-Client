@@ -32,7 +32,7 @@ const SignUp = () => {
         // image_url,
         mobileNo,
       };
-      console.log(hrData);
+      // console.log(hrData);
       const res = await register(hrData);
       if (res.success) {
         form.reset();
@@ -50,7 +50,7 @@ const SignUp = () => {
   return (
     <div className="flex justify-center items-center max-w-full min-h-screen pt-16">
       <div className="flex flex-col max-w-lg p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
-        <img className="w-28 h-14" src="PH-Cash.png" alt="" />
+        <img className="w-36 h-32" src="PH-Cash.png" alt="" />
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Register</h1>
           <p className="text-sm text-gray-400">Welcome to PH-Cash</p>

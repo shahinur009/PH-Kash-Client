@@ -7,9 +7,9 @@ const AllUserDetails = ({ refetch, eUser }) => {
   //approve request=====================
 
   const handleApprove = (id) => {
-    console.log(id);
+    // console.log(id);
     axiosSecure.patch(`/approve-user/${id}`).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
