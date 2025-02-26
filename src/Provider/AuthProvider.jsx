@@ -20,7 +20,10 @@ const AuthProvider = ({ children }) => {
 
   const register = async (user) => {
     try {
-      const { data } = await axios.post("http://localhost:5000/register", user);
+      const { data } = await axios.post(
+        "https://ph-cash-server.vercel.app/register",
+        user
+      );
       return data;
     } catch (error) {
       toast.error("Something Went Wrong!");
@@ -29,10 +32,13 @@ const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const { data } = await axios.post("http://localhost:5000/login", {
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        "https://ph-cash-server.vercel.app/login",
+        {
+          email,
+          password,
+        }
+      );
       if (data.success) {
         localStorage.setItem("token", data.token);
         const decodedUser = jwtDecode(data.token);
@@ -55,7 +61,7 @@ const AuthProvider = ({ children }) => {
 
   const forgetPassword = async (email, password) => {
     const { data } = await axios.patch(
-      `http://localhost:5000/forget_password/${email}`,
+      `https://ph-cash-server.vercel.app/forget_password/${email}`,
       { password }
     );
     return data;

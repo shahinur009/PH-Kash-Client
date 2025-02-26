@@ -1,6 +1,6 @@
 import axios from "axios";
 export const axiosCommon = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://ph-cash-server.vercel.app",
   withCredentials: true,
 });
 

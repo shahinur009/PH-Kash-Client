@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000";
+const API_URL = "https://ph-cash-server.vercel.app";
 
 const register = (hrData) => {
   // console.log("login");
