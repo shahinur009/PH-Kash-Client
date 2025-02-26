@@ -25,7 +25,7 @@ const Navbar = () => {
   } = useQuery({
     queryFn: async () => {
       const { data } = await axiosCommon(`/user-balance/${user?.email}`);
-      // console.log(data);
+      console.log(data);
       return data;
     },
     queryKey: ["userData", user],
